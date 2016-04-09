@@ -3,7 +3,7 @@
 
 ##Usage
 
-1. Download and unzip the latest <a href="https://github.com/Jbithell/Bundler/releases">release</a> into a directory you use for the development area of your site *(ie `beta.yourdomain.com`)*
+1. Download and unzip the latest <a href="https://github.com/Jbithell/Bundler/releases/latest">release</a> into a directory you use for the development area of your site *(ie `beta.yourdomain.com`)* - Composer is included to include <a href="http://twig.sensiolabs.org/">Twig</a> - You can remove it if you put your `autoload.php`'s path in the index.php file. 
 1. Place all your required files (e.g. `bootstrap.css`, `jquery.min.js`, images, etc. in `weblibs/` - When referencing your weblibs from code be sure to include the weblibs file - ie `<script src="weblibs/jquery.min.js"></script>`)
 1. Place all your twig files in `twig/`
 	* For dymanically produced javascript, templates, etc. place them in the `twig/` directory and reference them within your twig.
