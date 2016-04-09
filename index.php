@@ -78,23 +78,25 @@ if (php_sapi_name() == "cli") { //Command line mode, this will bundle
 		$counter++;
 	}
 
+	fwrite(fopen($newreleasepath . '.htaccess', "w"),'ErrorDocument 404 /404'); //Setup 404 Error Page
+
 	echo "Completed - Please check " . $newreleasepath . " for your project\n\n";
 } else {
-	$request = parse_url($_SERVER['REQUEST_URI']);
-	$path = $request["path"];
+	$pathfinderrequest = parse_url($_SERVER['REQUEST_URI']);
+	$pathfinderpath = $pathfinderrequest["path"];
 
-	$result = trim(str_replace(basename($_SERVER['SCRIPT_NAME']), '', $path), '/');
-
-	$result = explode('/', $result);
-	$max_level = 2;
-	while ($max_level < count($result)) {
-		unset($result[0]);
+	$pathfinderresult = trim(str_replace(basename($_SERVER['SCRIPT_NAME']), '', $pathfinderpath), '/');
+	$pathfinderresult = explode('/', $pathfinderresult);
+	$pathfindermax_level = 5;
+	while ($pathfindermax_level < count($pathfinderresult)) {
+		unset($pathfinderresult[0]);
 	}
-	$result = implode('/', $result);
-	echo $result;
-	//if (!isset($PAGES[reset(array_keys($_GET))])) $PAGE = $PAGES[0];
-	//else $PAGE = $PAGES[reset(array_keys($_GET))];
+	$pathfinderresult = implode('/', $pathfinderresult);
 
-	//die(twigrender($PAGE['TWIG']));
+	if ($pathfinderresult == "") $PAGE = array_values($PAGES)[0];
+	elseif (!isset($PAGES[$pathfinderresult])) $PAGE = $PAGES['404'];
+	else $PAGE = $PAGES[$pathfinderresult];
+
+	die(twigrender($PAGE['TWIG']));
 }
 ?>
