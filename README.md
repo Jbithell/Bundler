@@ -1,4 +1,5 @@
 # Bundler
+##This is a proof of concept/pilot to demonstrate an idea - and should not be used in production
 *System to Bundle PHP/Twig Projects into html for use in PhoneGap and Element, or hosting where dynamic content is unavailable - such as in Amazon S3 or Github Pages*
 
 ##Usage
